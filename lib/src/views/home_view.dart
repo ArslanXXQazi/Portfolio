@@ -14,24 +14,27 @@ class _HomeViewState extends State<HomeView> {
     return SafeArea(child: Scaffold(
       body: Column(children: [
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-          BlackText(
-            onTap: (){},
-            text: "Works",
-          ),
-          const SizedBox(width: 20),
-          BlackText(
-            onTap: (){},
-            text: "Blog",
-          ),
-          const SizedBox(width: 20),
-          BlackText(
-            onTap: (){},
-            text: "Contact",
-          ),
-        ],)
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+            BlackText(
+              onTap: (){},
+              text: "Works",
+            ),
+            const SizedBox(width: 20),
+            BlackText(
+              onTap: (){},
+              text: "Blog",
+            ),
+            const SizedBox(width: 20),
+            BlackText(
+              onTap: (){},
+              text: "Contact",
+            ),
+          ],),
+        )
 
 
       ],),
