@@ -16,7 +16,77 @@ class _IntroWidgetState extends State<IntroWidget> {
     return Column(
       children: [
         if (Responsive.isMobile)
-          Container()
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Center(
+                child: Container(
+                  width: Responsive.width(200),
+                  height: Responsive.height(200),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFFEDF7FA).withValues(alpha: 0.8),
+                        blurRadius: 0,
+                        offset: const Offset(-8, 12),
+                      ),
+                    ],
+                    image: const DecorationImage(
+                      image: AssetImage("assets/profile.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+                const SizedBox(height: 20),
+              // Main Heading
+              const BlackText(
+                text: "Hi, I am Arslan, Mobile App Developer",
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                textAlign: TextAlign.center,
+                height: 1.3,
+              ),
+                const SizedBox(height: 20),
+
+              // Description Subtitle
+              const BlackText(
+                text:
+                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. "
+                    "Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                height: 1.5,
+                textAlign: TextAlign.center,
+              ),
+                const SizedBox(height: 30),
+
+              // Download Resume Button
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:  Colors.red,
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 18,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                child: BlackText(
+                  text: "Download Resume",
+                  fontSize: 14,
+                  textColor: Colors.white,
+                ),
+              ),
+            ],),
+          )
         else
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 140, vertical: 80),
