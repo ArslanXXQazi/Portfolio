@@ -54,7 +54,7 @@ class _IntroWidgetState extends State<IntroWidget> {
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:  Colors.red, // Coral Red button color
+                          backgroundColor:  Colors.red,
                           foregroundColor: Colors.white,
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(
@@ -90,7 +90,7 @@ class _IntroWidgetState extends State<IntroWidget> {
                           BoxShadow(
                             color: const Color(0xFFEDF7FA).withValues(alpha: 0.8),
                             blurRadius: 0,
-                            offset: const Offset(-8, 12), // Background light blue offset glow
+                            offset: const Offset(-8, 12),
                           ),
                         ],
                         image: const DecorationImage(
