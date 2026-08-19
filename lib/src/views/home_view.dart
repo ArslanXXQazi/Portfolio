@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/components/custom_widgets/black-text.dart';
+import 'package:portfolio/src/components/custom_widgets/intero_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -43,6 +44,9 @@ class _HomeViewState extends State<HomeView> {
             : null,
         body: Column(
           children: [
+
+            /// 1st Row for Drawer and Menu
+
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
@@ -69,6 +73,10 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+
+            /// 2nd Container for Resume and Intro
+            IntroWidget()
           ],
         ),
       ),
