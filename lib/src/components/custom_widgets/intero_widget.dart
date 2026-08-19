@@ -23,8 +23,8 @@ class _IntroWidgetState extends State<IntroWidget> {
               children: [
               Center(
                 child: Container(
-                  width: Responsive.width(200),
-                  height: Responsive.height(200),
+                  width: Responsive.width(180),
+                  height: Responsive.height(180),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     boxShadow: [
@@ -34,10 +34,10 @@ class _IntroWidgetState extends State<IntroWidget> {
                         offset: const Offset(-8, 12),
                       ),
                     ],
-                    image: const DecorationImage(
-                      image: AssetImage("assets/profile.png"),
-                      fit: BoxFit.cover,
-                    ),
+                    // image: const DecorationImage(
+                    //   image: AssetImage("assets/profile.png"),
+                    //   fit: BoxFit.cover,
+                    // ),
                   ),
                 ),
               ),
@@ -163,10 +163,10 @@ class _IntroWidgetState extends State<IntroWidget> {
                             offset: const Offset(-8, 12),
                           ),
                         ],
-                        image: const DecorationImage(
-                          image: AssetImage("assets/profile.png"),
-                          fit: BoxFit.cover,
-                        ),
+                        // image: const DecorationImage(
+                        //   image: AssetImage("assets/profile.png"),
+                        //   fit: BoxFit.cover,
+                        // ),
                       ),
                     ),
                   ),

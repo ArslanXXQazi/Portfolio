@@ -18,6 +18,7 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
         endDrawer: Responsive.isMobile
             ? Drawer(
+          backgroundColor: Colors.grey.shade400,
           child: ListView(
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             children: [
@@ -73,8 +74,6 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-
             /// 2nd Container for Resume and Intro
             IntroWidget()
           ],
