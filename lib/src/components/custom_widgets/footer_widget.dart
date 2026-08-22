@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/components/custom_widgets/black-text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //===========>>>> Footer Widget
 class FooterWidget extends StatefulWidget {
@@ -11,10 +12,9 @@ class FooterWidget extends StatefulWidget {
 
 class _FooterWidgetState extends State<FooterWidget> {
   final List<Map<String, dynamic>> _socialLinks = [
-    {'label': 'GitHub', 'icon': Icons.code},
-    {'label': 'LinkedIn', 'icon': Icons.business},
-    {'label': 'Email', 'icon': Icons.email_outlined},
-    {'label': 'Twitter', 'icon': Icons.tag},
+    {'label': 'GitHub', 'icon': Icons.code, 'url': 'https://github.com/ArslanXXQazi'},
+    {'label': 'LinkedIn', 'icon': Icons.business, 'url': 'https://www.linkedin.com/in/muhammad-arsalan-qazi-92ba5b293/'},
+    {'label': 'Email', 'icon': Icons.email_outlined, 'url': 'mailto:arslanqazi1999@gmail.com'},
   ];
 
   int? _hoveredIndex;
@@ -104,7 +104,15 @@ class _FooterWidgetState extends State<FooterWidget> {
                   onEnter: (_) => setState(() => _hoveredIndex = index),
                   onExit: (_) => setState(() => _hoveredIndex = null),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      final urlStr = _socialLinks[index]['url'] as String?;
+                      if (urlStr != null) {
+                        final uri = Uri.parse(urlStr);
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri);
+                        }
+                      }
+                    },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
                       margin: const EdgeInsets.only(left: 12),
@@ -215,7 +223,15 @@ class _FooterWidgetState extends State<FooterWidget> {
               onEnter: (_) => setState(() => _hoveredIndex = index),
               onExit: (_) => setState(() => _hoveredIndex = null),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  final urlStr = _socialLinks[index]['url'] as String?;
+                  if (urlStr != null) {
+                    final uri = Uri.parse(urlStr);
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(uri);
+                    }
+                  }
+                },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   margin: const EdgeInsets.symmetric(horizontal: 6),

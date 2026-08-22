@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/src/components/custom_widgets/black-text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //===========>>>> Contact Widget
 class ContactWidget extends StatefulWidget {
@@ -14,26 +15,23 @@ class _ContactWidgetState extends State<ContactWidget> {
     {
       'icon': Icons.email_outlined,
       'label': 'Email',
-      'value': 'arslan.dev@gmail.com',
+      'value': 'arslanqazi1999@gmail.com',
+      'url': 'mailto:arslanqazi1999@gmail.com',
       'color': Color(0xFF4CAF50),
     },
     {
       'icon': Icons.code,
       'label': 'GitHub',
       'value': 'github.com/ArslanXXQazi',
+      'url': 'https://github.com/ArslanXXQazi',
       'color': Color(0xFF21243D),
     },
     {
       'icon': Icons.business,
       'label': 'LinkedIn',
-      'value': 'linkedin.com/in/arslan-qazi',
+      'value': 'Muhammad Arsalan Qazi',
+      'url': 'https://www.linkedin.com/in/muhammad-arsalan-qazi-92ba5b293/',
       'color': Color(0xFF0077B5),
-    },
-    {
-      'icon': Icons.location_on_outlined,
-      'label': 'Location',
-      'value': 'Pakistan 🇵🇰',
-      'color': Color(0xFFFF5722),
     },
   ];
 
@@ -208,74 +206,89 @@ class _ContactCardState extends State<_ContactCard> {
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        margin: const EdgeInsets.only(bottom: 16),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        decoration: BoxDecoration(
-          color: _isHovered ? color.withValues(alpha: 0.05) : Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: _isHovered ? color : const Color(0xFFE5E7EB),
-            width: _isHovered ? 1.5 : 1,
+      child: GestureDetector(
+        onTap: () async {
+          final urlStr = widget.item['url'] as String?;
+          if (urlStr != null) {
+            final uri = Uri.parse(urlStr);
+            if (await canLaunchUrl(uri)) {
+              await launchUrl(uri);
+            }
+          }
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          decoration: BoxDecoration(
+            color: _isHovered ? color.withValues(alpha: 0.05) : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: _isHovered ? color : const Color(0xFFE5E7EB),
+              width: _isHovered ? 1.5 : 1,
+            ),
+            boxShadow: _isHovered
+                ? [
+                    BoxShadow(
+                      color: color.withValues(alpha: 0.15),
+                      blurRadius: 14,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : [
+                    const BoxShadow(
+                      color: Color(0x0D000000),
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
           ),
-          boxShadow: _isHovered
-              ? [
-                  BoxShadow(
-                    color: color.withValues(alpha: 0.15),
-                    blurRadius: 14,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : [
-                  const BoxShadow(
-                    color: Color(0x0D000000),
-                    blurRadius: 6,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(
-                widget.item['icon'] as IconData,
-                color: color,
-                size: 20,
-              ),
-            ),
-            const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BlackText(
-                  text: widget.item['label'],
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  textColor: const Color(0xFF9CA3AF),
+          child: Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                const SizedBox(height: 2),
-                BlackText(
-                  text: widget.item['value'],
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  textColor: const Color(0xFF21243D),
+                child: Icon(
+                  widget.item['icon'] as IconData,
+                  color: color,
+                  size: 20,
                 ),
-              ],
-            ),
-            const Spacer(),
-            Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 14,
-              color: _isHovered ? color : const Color(0xFFD1D5DB),
-            ),
-          ],
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BlackText(
+                      text: widget.item['label'],
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      textColor: const Color(0xFF9CA3AF),
+                    ),
+                    const SizedBox(height: 2),
+                    BlackText(
+                      text: widget.item['value'],
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      textColor: const Color(0xFF21243D),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: _isHovered ? color : const Color(0xFFD1D5DB),
+              ),
+            ],
+          ),
         ),
       ),
     );
