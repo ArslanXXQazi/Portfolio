@@ -155,7 +155,12 @@ class _ContactWidgetState extends State<ContactWidget> {
           ),
           const SizedBox(height: 28),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              final uri = Uri.parse('https://wa.me/923483424529');
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri);
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
